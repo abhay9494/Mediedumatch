@@ -249,7 +249,7 @@ textarea {
 }
 
 .title-holder .subtitle {
-  color: #999999;
+  color: #000000;
 }
 
 .title-holder .subtitle:before {
@@ -404,6 +404,12 @@ textarea {
   line-height: 1.6;
 }
 
+.links{
+  /* margin-left: 10px; */
+  font-size: 16px;
+  font-weight: 600;
+}
+
 #header .navbar-collapse {
   flex-grow: 0;
 }
@@ -425,7 +431,9 @@ textarea {
 #header .navbar-collapse a:hover,
 #header .navbar-collapse a.active {
   background: none;
-  color: #4bf68f;
+  color: #f64b4b;
+  /* font-weight: 600; */
+  text-decoration: underline;
 }
 #header .navbar-collapse a:hover:before,
 #header .navbar-collapse a.active:before {
