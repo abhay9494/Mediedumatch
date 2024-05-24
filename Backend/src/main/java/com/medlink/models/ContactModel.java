@@ -16,10 +16,10 @@ public class ContactModel {
   @Column(unique = true, nullable = false, updatable = false)
   private String email;
 
-  @NotBlank(message = "First name is required")
+  @NotBlank(message = "Name is required")
   private String fullName;
 
-  @NotBlank(message = "message is required")
+  @NotBlank(message = "Message is required")
   private String message;
 
   public ContactModel(String email, String fullName, String message) {

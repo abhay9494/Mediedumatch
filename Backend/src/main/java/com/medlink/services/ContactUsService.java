@@ -25,7 +25,7 @@ public class ContactUsService {
         System.out.println(contactUsDto);
 
         try {
-            emailUtil.sendEmail2("spamsignin889@gmail.com", "You have a new user complaint ","<h4>"+contactUsDto.getName()+"</h4></br>",contactUsDto.getEmail(),contactUsDto.getPhoneNo(),contactUsDto.getMessage());
+            emailUtil.sendEmail2("spamsignin889@gmail.com", "You have a new user complain","<h4>"+contactUsDto.getName()+"</h4></br>",contactUsDto.getEmail(),contactUsDto.getPhoneNo(),contactUsDto.getMessage());
         } catch (MessagingException e) {
             throw new RuntimeException("Unable to send otp please try again");
         }

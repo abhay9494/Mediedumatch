@@ -18,7 +18,7 @@ import com.medlink.services.*;
 import com.medlink.models.*;
 
 
-@CrossOrigin(origins="http://localhost:3000")
+@CrossOrigin(origins="http://localhost:3001")
 @RestController
 public class CourseController {
     //	@Autowired

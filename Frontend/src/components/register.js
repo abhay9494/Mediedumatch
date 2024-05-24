@@ -55,7 +55,7 @@ const Register = ({ setislogged }) => {
         toast.success("OTP sent successfully !!!");
         setCheck(true);
       })
-      .catch((e) => {toast.error("something went wrong while sending otp")
+      .catch((e) => {toast.error("Something went wrong while sending otp")
     console.log(e)});
 
     setIsLoading(false);

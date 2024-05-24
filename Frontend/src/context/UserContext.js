@@ -13,10 +13,10 @@ export const UserProvider = ({ children }) => {
     localStorage.setItem("user", JSON.stringify(user));
   }, [user]);
 
-  const [isLogged,setIsLogged]=useState(false)
+  const [isLogged, setIsLogged] = useState(false);
 
   return (
-    <UserContext.Provider value={{ user, setUser ,isLogged,setIsLogged}}>
+    <UserContext.Provider value={{ user, setUser, isLogged, setIsLogged }}>
       {children}
     </UserContext.Provider>
   );
