@@ -32,38 +32,64 @@
   align-items: center;
 } */
 
-.custom-navbar, .custom-navbar .container-fluid, .navbar-nav, .nav-link {
-    padding: 0 !important;
-  }
-  
-  .custom-navbar .navbar-nav {
-    flex-grow: 1;
-    justify-content: center;
-  }
-  
-  .auth-links {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    flex-grow: 1;
-  }
-  
-  .auth-button {
-    border: none;
-    padding: 5px 10px;
-    background-color: #f64b4b; 
-    color: white;
-    border-radius: 10px;
-    margin-left: 10px;
-    cursor: pointer; 
-  }
-  
-  .welcome-message {
-    color: black;
-    margin-right: 10px;
-  }
-  
-  .navbar {
-    display: flex;
-    align-items: center;
-  }
+.custom-navbar,
+.custom-navbar .container-fluid,
+.navbar-nav,
+.nav-link {
+  padding: 0 !important;
+}
+
+.custom-navbar .navbar-nav {
+  flex-grow: 1;
+  justify-content: center;
+}
+
+.auth-links {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-grow: 1;
+}
+
+.auth-button {
+  border: none;
+  padding: 5px 10px;
+  background-color: #f64b4b;
+  color: white;
+  border-radius: 10px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.welcome-message {
+  color: black;
+  margin-right: 10px;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+}
+
+.login-Btn {
+  /* background-color: #f64b4b;  */
+  width: 150px;
+  height: 40px;
+  color: white;
+  border-radius: 10px;
+  /* margin-left: 10px; */
+  cursor: pointer;
+
+  border: "none";
+  background-color: rgba(210, 0, 0, 0.6);
+  -webkit-transition: background 0.3s linear, color 0.3s linear;
+}
+
+.login-Btn:hover {
+  background-color: #fff;
+  color: #f64b4b;
+  border-radius: 10px;
+  border: 1.5px solid #f64b4b;
+  /* margin-left: 10px; */
+  cursor: pointer;
+}

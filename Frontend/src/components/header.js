@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import {jwtDecode} from 'jwt-decode';
 import { useAuth } from "../context/AuthContext"; // Ensure this path is correct
 import logout from "../components/logout"; // Ensure this path is correct
+import "../css/header.css";
 
 function Header() {
   const { isAuthenticated, logout } = useAuth();
@@ -66,20 +67,17 @@ function Header() {
             {isAuthenticated ? (
               <div>
                 <span style={{ marginRight: "10px" }}>{decodedToken.name}</span>
-                <div className="btn btn-outline-danger" onClick={handleLogout}>
+                <div 
+                  // className="btn btn-outline-danger" 
+                  className="login-Btn"
+                  onClick={handleLogout}>
                   Log Out
                 </div>
               </div>
             ) : (
               <Nav.Link id="btn" href="/register">
                 <button
-                  style={{
-                    border: "none",
-                    backgroundColor: "rgba(210,0,0,0.6)",
-                    borderRadius: "10px",
-                    width: "150px",
-                    height: "40px",
-                  }}
+                  className="login-Btn"
                 >
                   Log in / Sign up
                 </button>

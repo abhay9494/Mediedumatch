@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Image from "../assets/images/SignUp.webp";
+import Image from "../assets/images/surgical-item-500x500.webp";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import Logo from "../assets/images/logo.png";
 // import GoogleSvg from "../assets/images/icons8-google.svg";

@@ -68,7 +68,7 @@ function College() {
     <section id="works" className="block works-block">
       <Container fluid>
         <div className="title-holder">
-          <h2>Top Colleges</h2>
+          <h2 style={{color: "#f64b4b"}}>Top Colleges</h2>
         </div>
         <Row className='portfoliolist'>
           {

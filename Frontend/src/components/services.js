@@ -53,16 +53,16 @@ function AppServices() {
     <section id="services" className="block services-block">
       <Container fluid>
         <div className="title-holder">
-          <h2>Our services</h2>
-          <div className="subtitle">services we provide</div>
+          <h2 style={{color: "#f64b4b"}}>Our services</h2>
+          <div className="subtitle" style={{color: "rgba(210, 0, 0, 0.6)"}}>services we provide</div>
         </div>
         <Row>
           {servicesData.map((services) => {
             return (
               <Col sm={4} className="holder" key={services.id}>
-                <div className="icon">
+                <div className="icon" >
                   <Link to={services.link}>
-                    <i className={services.icon}></i>
+                    <i className={services.icon} ></i>
                   </Link>
                 </div>
                 <h3>{services.title}</h3>

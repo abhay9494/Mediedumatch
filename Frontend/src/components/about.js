@@ -10,8 +10,8 @@ function About() {
     <section id="about" className="block about-block">
       <Container fluid>
         <div className="title-holder">
-          <h1>About Us</h1>
-          <div className="subtitle">learn more about us</div>
+          <h1  style={{color: "#f64b4b"}}>About Us</h1>
+          <div className="subtitle" style={{color: "rgba(210, 0, 0, 0.6)"}}>learn more about us</div>
         </div>
         <Row>
           <Col sm={6}>

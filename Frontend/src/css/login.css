@@ -8,11 +8,11 @@
 }
 
 body {
-    background: #fff;
+    /* background: #606060; */
     /* background: linear-gradient(to right, #e2e2e2, #c9d6ff); */
     height: 100vh;
     color: #ffffff;
-    background: #fff;
+    background: #606060;
     font: 16px/1.6 "Muli", sans-serif;
     min-width: 320px;
     -webkit-font-smoothing: antialiased;
@@ -32,7 +32,7 @@ body {
 
 
 .contain {
-    background-color: #fff;
+    background-color: #606060;
     border-radius: 30px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
     position: relative;
@@ -55,7 +55,7 @@ body {
 }
 
 .contain a {
-    color: #ffffff;
+    color: #606060;
     font-size: 13px;
     text-decoration: none;
     margin: 15px 0 10px;
@@ -81,7 +81,7 @@ body {
 }
 
 .contain form {
-    background-color: #fff;
+    background-color: #606060;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -91,7 +91,7 @@ body {
 }
 
 .contain input {
-    background-color: #eee;
+    background-color: #606060;
     border: none;
     margin: 8px 0;
     padding: 10px 15px;
@@ -230,5 +230,10 @@ body {
 
 .contain.active .toggle-right {
     transform: translateX(200%);
+}
+
+
+.login-right {
+    background-color: #606060;
 }
 
