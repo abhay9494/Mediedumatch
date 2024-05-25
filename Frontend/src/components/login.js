@@ -26,7 +26,7 @@ const Login = () => {
     e.preventDefault();
     toast.info("Please Wait...");
     try {
-      const response = await axios.post("http://localhost:8080/login", { email, password });
+      const response = await axios.post("http://13.201.0.23:8080/login", { email, password });
       localStorage.setItem("token", response.data.token);
       login(response.data.token); // Save token and update auth state
 

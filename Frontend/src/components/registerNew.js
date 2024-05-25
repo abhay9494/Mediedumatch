@@ -38,7 +38,7 @@ export const SignupForm = ({ setislogged }) => {
     // formData.name = formData.firstname + " " + formData.lastname;
     console.log("hhhhhhh");
     await axios
-      .post("http://localhost:8080/student/register", formData)
+      .post("http://13.201.0.23:8080/student/register", formData)
       .then((res) => {
         toast.success("OTP sent successfully !!!");
         setCheck(true);
@@ -62,7 +62,7 @@ export const SignupForm = ({ setislogged }) => {
     console.log(formData);
     await axios
       .put(
-        "http://localhost:8080/student/verify-account?email=" +
+        "http://13.201.0.23:8080/student/verify-account?email=" +
           formData.email +
           "&otp=" +
           formData.otp,

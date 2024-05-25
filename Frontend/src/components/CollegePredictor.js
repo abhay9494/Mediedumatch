@@ -53,7 +53,7 @@ function CollegePredictor() {
 let json
   const fetchData = async () => {
     
-          const response = await fetch(`http://localhost:8080/courses/${domicileState}/${cat}/${neetScore}`,{mode:'cors'});
+          const response = await fetch(`http://13.201.0.23:8080/courses/${domicileState}/${cat}/${neetScore}`,{mode:'cors'});
            json= await response.json();
           if (!response.ok) {
               throw new Error('Failed to fetch data');
