@@ -60,7 +60,7 @@ function Header() {
               style={{ marginLeft: "30px" }}
               href="/contact"
             >
-              Contact
+              Contact Us
             </Nav.Link>
           </Nav>
           <div>

@@ -10,19 +10,25 @@ const Contact = () => {
   const [email, setEmail] = useState("");
   const [phone_no, setPhone] = useState("");
   const [message, setMessage] = useState("");
-  const [emailError, setEmailError] = useState("");
-  const [nameError, setNameError] = useState("");
+  // const [emailError, setEmailError] = useState("");
+  // const [nameError, setNameError] = useState("");
   // const [lastNameError, setLastNameError] = useState("");
-  const [showPopup, setShowPopup] = useState(false);
+  // const [showPopup, setShowPopup] = useState(false);
 
   const navigate = useNavigate();
 
-  const handleNameChange = (e) => {
-    setName(e.target.value);
+  // const handleNameChange = (e) => {
+  //   setName(e.target.value);
+  //   if (!e.target.value.trim()) {
+  //     setNameError("Name is required");
+  //   } else {
+  //     setNameError("");
+  //   }
+  // };
+
+  const handleNameBlur = (e) => {
     if (!e.target.value.trim()) {
-      setNameError("Name is required");
-    } else {
-      setNameError("");
+      toast.error("Name is required");
     }
   };
 
@@ -35,50 +41,61 @@ const Contact = () => {
   //   }
   // };
 
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-    setEmailError("");
-  };
+  // const handleEmailChange = (e) => {
+  //   setEmail(e.target.value);
+  //   setEmailError("");
+  // };
 
-  const handleEmailBlur = () => {
-    if (!email.trim()) {
-      setEmailError("Email is required");
-    } else if (!/^\S+@\S+\.\S+$/.test(email)) {
-      setEmailError("Email is invalid");
+  // const handleEmailBlur = () => {
+  //   if (!email.trim()) {
+  //     setEmailError("Email is required");
+  //   } else if (!/^\S+@\S+\.\S+$/.test(email)) {
+  //     setEmailError("Email is invalid");
+  //   }
+  // };
+
+  const handleEmailBlur = (e) => {
+    if (!e.target.value.trim()) {
+      toast.error("Email is required");
+    } else if (!/^\S+@\S+\.\S+$/.test(e.target.value)) {
+      toast.error("Email is invalid");
     }
   };
 
-  const handlePhoneChange = (e) => {
-    setPhone(e.target.value);
+  // const handlePhoneChange = (e) => {
+  //   setPhone(e.target.value);
+  // };
+
+  const handlePhoneBlur = (e) => {
+    if (!e.target.value.trim()) {
+      toast.error("Phone number is required");
+    }
   };
 
-  const handleMessageChange = (e) => {
-    setMessage(e.target.value);
+  // const handleMessageChange = (e) => {
+  //   setMessage(e.target.value);
+  // };
+
+  const handleMessageBlur = (e) => {
+    if (!e.target.value.trim()) {
+      toast.error("Message is required");
+    }
   };
 
   const handleClick = (e) => {
     e.preventDefault();
-
-    if (!name.trim()) {
-      // console.log("Name Error");
-      setNameError("Name is required");
+    if (!name.trim() || !email.trim() || !phone_no.trim() || !message.trim()) {
+      toast.error("All fields are required");
       return;
     }
-    // if (!lastName.trim()) {
-    //   console.log("Last Name Error");
-    //   setLastNameError("Last Name is required");
-    //   return;
-    // }
-    if (!email.trim() || !/^\S+@\S+\.\S+$/.test(email)) {
-      // console.log("Email Error");
-      setEmailError("Email is invalid");
+    if (!/^\S+@\S+\.\S+$/.test(email)) {
+      toast.error("Email is invalid");
       return;
     }
 
     toast.info("Please Wait...");
 
     const data = { name, email, phone_no, message };
-    // console.log(data);
     fetch("http://localhost:8080/contactUs", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -88,30 +105,18 @@ const Contact = () => {
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
-        // return response.json();
         return response.text();
       })
       .then((data) => {
-        console.log("Success:", data);
-        // toast.success("Your message has been received by our team! \nWe will contact you shortly!");
         toast.success("Your message has been received by our team!");
         setTimeout(() => {
           toast.success("We will contact you shortly!");
         }, 2000);
-
-
-        // toast.success("");
         setTimeout(() => navigate("/"), 5000);
       })
       .catch((error) => {
-        // console.error("Error:", error);
         toast.error("Failed to send message.");
       });
-
-    // setShowPopup(true);
-    // setTimeout(() => setShowPopup(false), 3000);
-    // toast.success("Your message has been received!");
-    // setTimeout(() => navigate("/"), 5000);
   };
 
   return (
@@ -181,11 +186,13 @@ const Contact = () => {
                     placeholder="Name"
                     name="name"
                     value={name}
-                    onChange={handleNameChange}
+                    // onChange={handleNameChange}
+                    onChange={(e) => setName(e.target.value)}
+                    onBlur={handleNameBlur}
                   />
-                  {nameError && (
+                  {/* {nameError && (
                     <span className="error">{nameError}</span>
-                  )}
+                  )} */}
                 </div>
                 {/* <div className="form-group">
                   <input type="text" className="lname" placeholder="Last Name" value={lastName} onChange={handleLastNameChange} />
@@ -198,19 +205,24 @@ const Contact = () => {
                     placeholder="Mail"
                     name="email"
                     value={email}
-                    onChange={handleEmailChange}
+                    // onChange={handleEmailChange}
+                    // onBlur={handleEmailBlur}
+                    onChange={(e) => setEmail(e.target.value)}
                     onBlur={handleEmailBlur}
                   />
-                  {emailError && <span className="error">{emailError}</span>}
+                  {/* {emailError && <span className="error">{emailError}</span>} */}
                 </div>
                 <div className="form-group">
                   <input
                     type="number"
+                    // inputmode="numeric"
                     className="phone"
                     placeholder="Phone"
                     name="phone_no"
                     value={phone_no}
-                    onChange={handlePhoneChange}
+                    // onChange={handlePhoneChange}
+                    onChange={(e) => setPhone(e.target.value)}
+                    onBlur={handlePhoneBlur}
                   />
                 </div>
                 <div className="form-group">
@@ -219,7 +231,9 @@ const Contact = () => {
                     id=""
                     placeholder="Write your message"
                     value={message}
-                    onChange={handleMessageChange}
+                    // onChange={handleMessageChange}
+                    onChange={(e) => setMessage(e.target.value)}
+                    onBlur={handleMessageBlur}
                   ></textarea>
                 </div>
               </div>

@@ -48,15 +48,17 @@ const Register = ({ setislogged }) => {
     }
     setIsLoading(true);
     formData.name = formData.firstname + " " + formData.lastname;
-    console.log("hhhhhhh");
+    // console.log("hhhhhhh");
     await axios
       .post("http://localhost:8080/register", formData)
       .then((res) => {
         toast.success("OTP sent successfully !!!");
         setCheck(true);
       })
-      .catch((e) => {toast.error("Something went wrong while sending otp")
-    console.log(e)});
+      .catch((e) => {
+        toast.error("Something went wrong while sending otp");
+        // console.log(e);
+      });
 
     setIsLoading(false);
   }
@@ -75,16 +77,16 @@ const Register = ({ setislogged }) => {
         `http://localhost:8080/verify-account?email=${formData.email}&otp=${formData.otp}`,
         formData
       );
-console.log(formData)
+      // console.log(formData);
       if (response.status === 200) {
-        console.log(response);
+        // console.log(response);
         navigate("/login");
         toast.success("Account created successfully!!!");
       } else {
-        throw new Error('Failed to verify account');
+        throw new Error("Failed to verify account");
       }
     } catch (e) {
-      console.log(e);
+      // console.log(e);
       toast.error("Something went wrong, please try again later");
     }
   }
@@ -135,7 +137,7 @@ console.log(formData)
   //     } catch (err) {
   //       toast.error(
   //         err.response
-  //           ? err.response.data.message
+//              ? err.response.data.message
   //           : "An error occurred while verifying OTP."
   //       );
   //     }
@@ -192,9 +194,9 @@ console.log(formData)
                 onChange={changeHandler}
                 placeholder="Enter Last Name"
                 value={formData.lastname}
-                 //       className="bg-richblack-800 rounded-[0.5rem] text-richblack-5
+                //       className="bg-richblack-800 rounded-[0.5rem] text-richblack-5
                 // w-full p-[12px]"
-              /> 
+              />
               <input
                 type="email"
                 name="email"
@@ -327,12 +329,15 @@ console.log(formData)
                   </button>
                 </div>
               ) : (
-              <div>  <button
-              className="btn btn-primary"
-              onClick={(e) => sendOtp(e)}
-            >
-              {isLoading ? "Please Wait" : "Send OTP"}
-            </button></div>
+                <div>
+                  {" "}
+                  <button
+                    className="btn btn-primary"
+                    onClick={(e) => sendOtp(e)}
+                  >
+                    {isLoading ? "Please Wait" : "Send OTP"}
+                  </button>
+                </div>
               )}
             </form>
           </div>
