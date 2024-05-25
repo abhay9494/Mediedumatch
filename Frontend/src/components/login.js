@@ -25,45 +25,29 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     toast.info("Please Wait...");
-    // const response = await fetch("http://localhost:8080/login");
-    // const students = await response.json()
+    try {
+      const response = await axios.post("http://localhost:8080/login", { email, password });
+      localStorage.setItem("token", response.data.token);
+      login(response.data.token); // Save token and update auth state
 
-    // Check if the entered email exists in the fetched students and get the student data
-    // const student = students.find(student => student.email === email);
-
-    //   if (student && student.password === password) {
-    //     setUser(student.name); // Store the user's name in the context
-    //     // console.log(student.name);
-    //     toast.success("Login successful");
-    //     setTimeout(() => navigate('/'), 3000);
-    //   } else {
-    //     toast.error("Incorrect email or password");
-    //   }
-    // } catch (error) {
-    //   console.error("Error fetching students:", error);
-    //   // toast.error("An error occurred during login");
-    //   toast.error("User not found!!! Kindly SignUp.");
-    // }
-
-    await axios
-      .post("http://localhost:8080/login", { email, password })
-      .then((res) => {
-        // console.log(res);
-        localStorage.setItem("token", res.data.token);
-        login(res.data.token); // Save token and update auth state
-
-        const decodedToken = jwtDecode(res.data.token);
-        // console.log(decodedToken);
-        
-        setIsLogged(true);
-        navigate("/");
-        toast.success("Welcome " + decodedToken.name + " !");
-      })
-      .catch((e) => {
-        // console.log(e);
-        toast.error("Incorrect email or password");
-      });
-    // console.log(email, password)
+      const decodedToken = jwtDecode(response.data.token);
+      setIsLogged(true);
+      navigate("/");
+      toast.success("Welcome " + decodedToken.name + " !");
+    } catch (error) {
+      if (error.response && error.response.data) {
+        // Check if the specific error message is received from the backend
+        if (error.response.data.message === "Account is not activated. Please verify your account.") {
+          toast.error("Account is not activated. Please verify your account.");
+        } else {
+          // Handle other types of errors generically
+          toast.error(error.response.data.message);
+        }
+      } else {
+        // Handle cases where the error response is not structured as expected
+        toast.error("An unexpected error occurred. Please try again.");
+      }
+    }
   };
 
   return (

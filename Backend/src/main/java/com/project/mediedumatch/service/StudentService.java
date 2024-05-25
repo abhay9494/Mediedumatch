@@ -73,6 +73,10 @@ public class StudentService {
             if (student == null) {
                 throw new Exception("Student not found");
             }
+            // Check if the student's account is active
+            if (!student.isActive()) {
+                throw new Exception("Account is not activated. Please verify your account.");
+            }
             // Check if the provided password matches the stored password
             if (!student.getPassword().equals(log.getPassword())) {
                 throw new Exception("Wrong password");
@@ -84,7 +88,7 @@ public class StudentService {
             return createToken(jwtRequest);
         } catch (Exception e) {
             // e.printStackTrace();
-            throw new Exception("Login failed: " + e.getMessage());
+            throw new Exception("Login failed:,,,,,,,,,,, " + e.getMessage());
         }
     }
 
@@ -110,8 +114,8 @@ public class StudentService {
     // }
 
     public String register(Student student) throws Exception {
-        Student check= studentRepository.findByEmail(student.getEmail());
-        if(check!=null){
+        Student check = studentRepository.findByEmail(student.getEmail());
+        if (check != null) {
             throw new Exception("Student Already Exists");
         }
         String otp = otpUtil.generateOtp();
@@ -134,17 +138,18 @@ public class StudentService {
             throw new RuntimeException("Student not found with this email: " + email);
         }
         try {
-            if (student.getOtp().equals(otp) && student.getOtpGeneratedTime().plusMinutes(5).isAfter(LocalDateTime.now())) {
+            if (student.getOtp().equals(otp)
+                    && student.getOtpGeneratedTime().plusMinutes(5).isAfter(LocalDateTime.now())) {
                 student.setActive(true);
                 Student s = studentRepository.save(student);
-                JwtRequest jwtRequest= new JwtRequest(s.getEmail(), s.getId());
-                String JWTTOKEN=jwt.generateToken(jwtRequest);
+                JwtRequest jwtRequest = new JwtRequest(s.getEmail(), s.getId());
+                String JWTTOKEN = jwt.generateToken(jwtRequest);
                 return JWTTOKEN;
             }
         } catch (Exception e) {
             throw new Exception("Error SigningUp: " + e.getMessage());
         }
-        
+
         return null;
         // return "Please regenerate otp and try again";
     }

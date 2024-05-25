@@ -60,14 +60,24 @@ function AppServices() {
         <Row>
           {servicesData.map((services) => {
             return (
+              // <Col sm={4} className="holder" key={services.id}>
+              //   <div className="icon" >
+              //     <Link to={services.link}>
+              //       <i className={services.icon} ></i>
+              //     </Link>
+              //   </div>
+              //   <h3>{services.title}</h3>
+              //   <p>{services.description}</p>
+              // </Col>
+
               <Col sm={4} className="holder" key={services.id}>
-                <div className="icon" >
-                  <Link to={services.link}>
-                    <i className={services.icon} ></i>
-                  </Link>
-                </div>
-                <h3>{services.title}</h3>
-                <p>{services.description}</p>
+                <Link to={services.link} className="service-link" style={{ textDecoration: 'none', color: 'inherit' }}>
+                  <div className="icon">
+                    <i className={services.icon}></i>
+                  </div>
+                  <h3>{services.title}</h3>
+                  <p>{services.description}</p>
+                </Link>
               </Col>
             );
           })}

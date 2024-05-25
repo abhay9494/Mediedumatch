@@ -76,10 +76,10 @@ public class StudentController {
 //    return new ResponseEntity<>(studentService.verifyAccount(email, otp), HttpStatus.OK);
 //  }
     
-//  @PutMapping("/regenerate-otp")
-//  public ResponseEntity<String> regenerateOtp(@RequestParam String email) {
-//    return new ResponseEntity<>(studentService.regenerateOtp(email), HttpStatus.OK);
-//  }
+ @PutMapping("/regenerate-otp")
+ public ResponseEntity<String> regenerateOtp(@RequestParam String email) {
+   return new ResponseEntity<>(studentService.regenerateOtp(email), HttpStatus.OK);
+ }
   
 //  @PutMapping("/login")
 //  public ResponseEntity<String> login(@RequestBody LoginDto loginDto) {
@@ -92,9 +92,20 @@ public class StudentController {
           loginResponseObject = new LoginResponse(studentService.login(student), 200);
           return ResponseEntity.ok().body(loginResponseObject);
       } catch (Exception e) {
-          ErrorResponse errorResponse = new ErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(),
-                  "Login failed. Please check your credentials and try again.");
-          return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
+        ErrorResponse errorResponse;
+        if (e.getMessage().contains("Account is not activated")) {
+            errorResponse = new ErrorResponse(HttpStatus.FORBIDDEN.value(), "Account is not activated. Please verify your account.");
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(errorResponse);
+        } else if (e.getMessage().contains("Wrong password")) {
+            errorResponse = new ErrorResponse(HttpStatus.UNAUTHORIZED.value(), "Wrong password. Please try again.");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorResponse);
+        } else if (e.getMessage().contains("Student not found")) {
+            errorResponse = new ErrorResponse(HttpStatus.NOT_FOUND.value(), "Student not found. Please check your credentials and try again.");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
+        } else {
+            errorResponse = new ErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), "Login failed. Please check your credentials and try again.");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
+        }
       }
   }
   

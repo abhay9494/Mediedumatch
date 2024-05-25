@@ -91,6 +91,20 @@ const Register = ({ setislogged }) => {
     }
   }
 
+  async function resendOtp() {
+    try {
+      toast.info("Trying to resend OTP on your mail. Please Wait!")
+      const response = await axios.put(`http://localhost:8080/regenerate-otp?email=${formData.email}`);
+      if (response.status === 200) {
+        toast.success("OTP resent successfully!");
+      } else {
+        throw new Error("Failed to resend OTP");
+      }
+    } catch (error) {
+      toast.error("Failed to resend OTP: " + error.message);
+    }
+  }
+
   // const [accountType,setaccountType]=useState('student')
 
   // const handleRegisterSubmit = async (e) => {
@@ -137,7 +151,7 @@ const Register = ({ setislogged }) => {
   //     } catch (err) {
   //       toast.error(
   //         err.response
-//              ? err.response.data.message
+  //              ? err.response.data.message
   //           : "An error occurred while verifying OTP."
   //       );
   //     }
@@ -306,20 +320,24 @@ const Register = ({ setislogged }) => {
               )} */}
               {check ? (
                 <div>
-                  <label className="w-full">
-                    <p className="text-[0.875rem] text-richblack-5 mb-1 leading-[1.375rem]">
-                      OTP <sup className="text-pink-200">*</sup>
-                    </p>
-
+                  <label className="w-full otp-label">
                     <input
                       type="text"
                       name="otp"
                       required
-                      id="otp"
+                      id="otp-input"
                       onChange={changeHandler}
                       placeholder="Enter OTP"
-                      className="bg-richblack-800 rounded-[0.5rem] text-richblack-5w-full p-[12px]"
+                      className="bg-richblack-800 rounded-[0.5rem] text-richblack-5w-full p-[12px] otp-input"
                     />
+                    <button
+                      className="btn btn-secondary"
+                      id="resend-otp-btn"
+                      onClick={resendOtp}
+                      style={{ marginLeft: '10px' }}
+                    >
+                      Resend OTP
+                    </button>
                   </label>
                   <button
                     className="btn btn-primary"
