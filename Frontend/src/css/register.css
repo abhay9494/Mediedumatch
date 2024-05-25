@@ -229,10 +229,6 @@
   box-sizing: border-box;
 }
 
-.mb-1 {
-  /* margin-bottom: .25rem !important; */
-}
-
 #resend-otp-btn{
   /* display: none; */
   margin-bottom: 16px;
