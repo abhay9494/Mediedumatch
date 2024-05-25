@@ -92,6 +92,7 @@ function College() {
       
       </Container>
     </section>
+    
   );
 }
 
