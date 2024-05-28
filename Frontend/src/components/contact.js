@@ -96,7 +96,7 @@ const Contact = () => {
     toast.info("Please Wait...");
 
     const data = { name, email, phone_no, message };
-    fetch("http://13.201.0.23:8080/contactUs", {
+    fetch("http://localhost:8080/contactUs", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
@@ -143,7 +143,7 @@ const Contact = () => {
               <li>
                 <i className="fas fa-globe"></i>
                 <span>Website:</span>{" "}
-                <a href="http://13.201.0.23:3000/">mediedumatch.com</a>
+                <a href="http://localhost:3000/">mediedumatch.com</a>
               </li>
             </ul>
             <iframe

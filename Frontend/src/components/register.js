@@ -50,7 +50,7 @@ const Register = ({ setislogged }) => {
     formData.name = formData.firstname + " " + formData.lastname;
     // console.log("hhhhhhh");
     await axios
-      .post("http://13.201.0.23:8080/register", formData)
+      .post("http://localhost:8080/register", formData)
       .then((res) => {
         toast.success("OTP sent successfully !!!");
         setCheck(true);
@@ -74,7 +74,7 @@ const Register = ({ setislogged }) => {
     console.log(formData);
     try {
       const response = await axios.put(
-        `http://13.201.0.23:8080/verify-account?email=${formData.email}&otp=${formData.otp}`,
+        `http://localhost:8080/verify-account?email=${formData.email}&otp=${formData.otp}`,
         formData
       );
       // console.log(formData);
@@ -94,7 +94,7 @@ const Register = ({ setislogged }) => {
   async function resendOtp() {
     try {
       toast.info("Trying to resend OTP on your mail. Please Wait!")
-      const response = await axios.put(`http://13.201.0.23:8080/regenerate-otp?email=${formData.email}`);
+      const response = await axios.put(`http://localhost:8080/regenerate-otp?email=${formData.email}`);
       if (response.status === 200) {
         toast.success("OTP resent successfully!");
       } else {
