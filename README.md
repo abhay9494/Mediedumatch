@@ -43,14 +43,14 @@ The server should now be running, and you can access the application in your bro
 
 ---
 
-Contributors
- - Abhay (Lead Developer)
-   GitHub: abhay9494
-   Email: abhayprasad9494@gmail.com
-   
- - Pranjal Sharma
-   GitHub: pranjalsha
-   Email: pranjalsharma013350@gmail.com
+## Contributors
+- **Abhay** (Lead Developer)  
+  - **GitHub**: [abhay9494](https://github.com/abhay9494)  
+  - **Email**: abhayprasad9494@gmail.com  
+
+- **Pranjal Sharma**  
+  - **GitHub**: [pranjalsha](https://github.com/pranjalsha)  
+  - **Email**: pranjalsharma013350@gmail.com
 
 ---
 
