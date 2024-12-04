@@ -38,6 +38,17 @@ Follow the steps below to set up and run MediEduMatch locally:
    ```bash
    npm start
    ```
+   
+4. Configure the backend:  
+   - Navigate to the file `Backend\src\main\resources\application.example.properties`.  
+   - Rename the file to `application.properties`.  
+   - Open the file and provide the necessary credentials for your setup:  
+     - **Database Name**  
+     - **Database Username**  
+     - **Database Password**  
+     - **SMTP Username**  
+     - **SMTP Password**  
+
 
 The server should now be running, and you can access the application in your browser.
 
